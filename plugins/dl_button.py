@@ -41,7 +41,8 @@ async def ddl_call_back(bot, update):
         url_parts = youtube_dl_url.split("|")
         if len(url_parts) == 2:
             youtube_dl_url = url_parts[0]
-            custom_file_name = url_parts[1]
+            custom_file_name = url_parts[1] + "." + youtube_dl_ext
+            custom_caption = url_parts[1]
         else:
             for entity in update.message.reply_to_message.entities:
                 if entity.type == "text_link":
@@ -128,7 +129,7 @@ async def ddl_call_back(bot, update):
                 await bot.send_audio(
                     chat_id=update.message.chat.id,
                     audio=download_directory,
-                    caption=description,
+                    caption=custom_caption,
                     duration=duration,
                     thumb=thumb_image_path,
                     reply_to_message_id=update.message.reply_to_message.message_id,
@@ -145,7 +146,7 @@ async def ddl_call_back(bot, update):
                     chat_id=update.message.chat.id,
                     document=download_directory,
                     thumb=thumb_image_path,
-                    caption=description,
+                    caption=custom_caption,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
@@ -177,7 +178,7 @@ async def ddl_call_back(bot, update):
                  await bot.send_video(
                     chat_id=update.message.chat.id,
                     video=download_directory,
-                    caption=description,
+                    caption=custom_caption,
                     duration=duration,
                     width=width,
                     height=height,
