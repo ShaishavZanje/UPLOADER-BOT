@@ -52,10 +52,12 @@ async def youtube_dl_call_back(bot, update):
         url_parts = youtube_dl_url.split("|")
         if len(url_parts) == 2:
             youtube_dl_url = url_parts[0]
-            custom_file_name = url_parts[1]
+            custom_file_name = url_parts[1] + "." + youtube_dl_ext
+            custom_caption = url_parts[1]
         elif len(url_parts) == 4:
             youtube_dl_url = url_parts[0]
-            custom_file_name = url_parts[1]
+            custom_file_name = url_parts[1] + "." + youtube_dl_ext
+            custom_caption = url_parts[1]
             youtube_dl_username = url_parts[2]
             youtube_dl_password = url_parts[3]
         else:
@@ -194,7 +196,7 @@ async def youtube_dl_call_back(bot, update):
                 await bot.send_audio(
                     chat_id=update.message.chat.id,
                     audio=download_directory,
-                    caption=description,
+                    caption=custom_caption,
                     parse_mode="HTML",
                     duration=duration,
                     thumb=thumbnail,
@@ -212,7 +214,7 @@ async def youtube_dl_call_back(bot, update):
                     chat_id=update.message.chat.id,
                     document=download_directory,
                     thumb=thumbnail,
-                    caption=description,
+                    caption=custom_caption,
                     parse_mode="HTML",
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
@@ -245,7 +247,7 @@ async def youtube_dl_call_back(bot, update):
                  await bot.send_video(
                     chat_id=update.message.chat.id,
                     video=download_directory,
-                    caption=description,
+                    caption=custom_caption,
                     parse_mode="HTML",
                     duration=duration,
                     width=width,
