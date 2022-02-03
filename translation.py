@@ -25,7 +25,12 @@ URL | filename | username | password"""
    DFile  - Give File (video) as file with Screenshots
    Video  - Give File as video without Screenshots
    File   - Give File without Screenshots
-
+4. Commands
+   /start - Check I'm alive or dead
+   /help - How to use this robot
+   /viewthumbnail - milky_way Current Thumbnail
+   /delthumbnail - sparkler Delete thumbnail
+   
 If bot didn't respond, contact @deadpoolmusicband"""
     REPLY_TO_MEDIA_ALBUM_TO_GEN_THUMB = "Reply /generatecustomthumbnail to a media album, to generate custom thumbail"
     ERR_ONLY_TWO_MEDIA_IN_ALBUM = """Media Album should contain only two photos. Please re-send the media album, and then try again, or send only two photos in an album."
